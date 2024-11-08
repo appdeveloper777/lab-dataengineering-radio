@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Engineering Topics</title>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-05CLWV314P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-05CLWV314P');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-05CLWV314P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-05CLWV314P');
+    </script>
     <style>
         /* Estilos generales */
         * {
@@ -114,7 +113,7 @@
             background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
-            z-index: 100; /* Asegura que el modal esté por encima de otros elementos */
+            z-index: 100;
         }
         .modal-content {
             background: #fff;
@@ -135,7 +134,6 @@
             line-height: 1.6;
         }
 
-        /* Estilo de la imagen en el modal */
         .modal-content img {
             width: 50%;
             margin-bottom: 15px;
@@ -145,13 +143,11 @@
             transition: transform 0.3s ease;
         }
         
-        /* Estilo de zoom al hacer clic */
         .modal-content img.zoomed {
-            transform: scale(3); /* Aumenta la imagen 3 veces */
+            transform: scale(3);
         }
 
-        /* Efecto para agrandar el botón del modal al hacer hover */
-        .confirm-button {
+        .confirm-button, .close-button {
             background-color: #4a90e2;
             color: #fff;
             border: none;
@@ -168,33 +164,52 @@
             z-index: 10;
             position: relative;
         }
-
-        .close-button {
-            background-color: #4a90e2;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
         .close-button:hover {
             background-color: #357ab7;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .topic-card {
+                flex-direction: column;
+            }
+            .topic-card img {
+                width: 100%;
+                border-right: none;
+                border-bottom: 4px solid #2a2d3e;
+            }
+            .topic-content {
+                padding: 15px;
+            }
+            .topic-title {
+                font-size: 1.4rem;
+            }
+            .topic-description {
+                font-size: 0.9rem;
+            }
+            .try-button {
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Data Engineering RADIO - LEARNING</h1>
-	<h1> - Laboratorio -</h1>
+        <h1> - Laboratorio -</h1>
         <h1>beginner</h1>
-<P>
-<B>Sponsor:</B> <a href="https://www.youtube.com/@DataEngineeringRadio/" target="_blank">Data Engineering RADIO</a>  
-</P>
-<BR>
-<b>Por favor, ayudanos a crecer con ustedes.. Danos un Like</b><BR>
+        <p>
+            <b>Sponsor:</b> <a href="https://www.youtube.com/@DataEngineeringRadio/" target="_blank">Data Engineering RADIO</a>  
+        </p>
+        <br>
+        <b>Por favor, ayudanos a crecer con ustedes.. Danos un Like</b><br>
 
         <div class="topic-card">
             <img src="imagen1.jpg" alt="Data Streaming">
@@ -232,48 +247,23 @@
             </div>
         </div>
 
-        <div class="topic-card">
-            <img src="imagen5.jpg" alt="SQL Basics">
-            <div class="topic-content">
-                <h2 class="topic-title">SQL Básico para Ingeniería de Datos</h2>
-                <p class="topic-description">Introducción a SQL, el lenguaje esencial para la manipulación y consulta de datos en bases de datos relacionales.</p>
-                <button class="try-button" onclick="openModal('https://mybinder.org/v2/gh/appdeveloper777/jupiterlabtest/HEAD?filepath=sql_basico_para_ingenieria_de_datos.ipynb')">Try Yourself</button>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div id="infoModal" class="modal">
+        <div class="modal" id="myModal">
             <div class="modal-content">
-                <h2>¿Cómo usar Jupyter Notebook?</h2>                
-                <p>Jupyter Notebook es una herramienta interactiva que permite ejecutar código en tiempo real y visualizar resultados de inmediato.</p>
-                <p><strong>Edita el código y haz clic en 'Run this cell..':</strong> <img src="BOTON2.png" alt="Run Code" id="modalImage" onclick="toggleZoom()"></p>                
-                <button class="close-button" onclick="closeModal()">Cerrar</button>
-                <button class="confirm-button" id="confirmButton">Continuar</button>
+                <span class="close-button" onclick="closeModal()">Cerrar</span>
+                <h2>Por favor, da clic en el enlace para abrir el laboratorio en un entorno de Jupyter Notebook</h2>
+                <a id="modalLink" href="" target="_blank" class="confirm-button">Abrir Lab</a>
             </div>
         </div>
     </div>
 
     <script>
-        let notebookUrl = '';
-
         function openModal(url) {
-            notebookUrl = url;
-            document.getElementById("infoModal").style.display = "flex";
+            document.getElementById("modalLink").href = url;
+            document.getElementById("myModal").style.display = "flex";
         }
 
         function closeModal() {
-            document.getElementById("infoModal").style.display = "none";
-        }
-
-        document.getElementById("confirmButton").onclick = function() {
-            window.open(notebookUrl, '_blank');
-            closeModal();
-        };
-
-        // Función para hacer zoom en la imagen
-        function toggleZoom() {
-            const img = document.getElementById("modalImage");
-            img.classList.toggle("zoomed");
+            document.getElementById("myModal").style.display = "none";
         }
     </script>
 </body>
