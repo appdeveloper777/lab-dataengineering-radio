@@ -11,8 +11,8 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-05CLWV314P');
-    </script>
-    <style>
+    </script>  
+      <style>
         /* Estilos generales */
         * {
             box-sizing: border-box;
@@ -51,8 +51,6 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            position: relative;
-            z-index: 0;
         }
         .topic-card:hover {
             transform: scale(1.02);
@@ -134,19 +132,16 @@
             line-height: 1.6;
         }
 
+        /* Imagen dentro del modal */
         .modal-content img {
-            width: 50%;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .modal-content img.zoomed {
-            transform: scale(3);
+            margin-top: 10px;
         }
 
+        /* Botones dentro del modal */
         .confirm-button, .close-button {
             background-color: #4a90e2;
             color: #fff;
@@ -156,15 +151,9 @@
             cursor: pointer;
             font-weight: bold;
             margin: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s;
         }
-        .confirm-button:hover {
-            background-color: #357ab7;
-            transform: scale(1.2);
-            z-index: 10;
-            position: relative;
-        }
-        .close-button:hover {
+        .close-button:hover, .confirm-button:hover {
             background-color: #357ab7;
         }
 
@@ -210,16 +199,7 @@
         </p>
         <br>
         <b>Por favor, ayudanos a crecer con ustedes.. Danos un Like</b><br>
-
-        <div class="topic-card">
-            <img src="imagen1.jpg" alt="Data Streaming">
-            <div class="topic-content">
-                <h2 class="topic-title">Data Streaming and Real-Time Data Processing</h2>
-                <p class="topic-description">Aprende cómo manejar flujos de datos en tiempo real y procesar información en vivo para aplicaciones críticas.</p>
-                <button class="try-button" onclick="openModal('https://mybinder.org/v2/gh/appdeveloper777/jupiterlabtest/HEAD?filepath=data_streaming_real_time_processing.ipynb')">Try Yourself</button>
-            </div>
-        </div>
-
+        <h1>Conceptos Básicos</h1>
         <div class="topic-card">
             <img src="imagen2.jpg" alt="ETL">
             <div class="topic-content">
@@ -229,6 +209,10 @@
             </div>
         </div>
 
+
+     
+        
+      
         <div class="topic-card">
             <img src="imagen3.jpg" alt="Data Warehousing">
             <div class="topic-content">
@@ -247,23 +231,51 @@
             </div>
         </div>
 
+        <div class="topic-card">
+            <img src="imagen5.jpg" alt="SQL Basics">
+            <div class="topic-content">
+                <h2 class="topic-title">SQL Básico para Ingeniería de Datos</h2>
+                <p class="topic-description">Introducción a SQL, el lenguaje esencial para la manipulación y consulta de datos en bases de datos relacionales.</p>
+                <button class="try-button" onclick="openModal('https://mybinder.org/v2/gh/appdeveloper777/jupiterlabtest/HEAD?filepath=sql_basico_para_ingenieria_de_datos.ipynb')">Try Yourself</button>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <img src="imagen1.jpg" alt="Data Streaming">
+            <div class="topic-content">
+                <h2 class="topic-title">Data Streaming and Real-Time Data Processing</h2>
+                <p class="topic-description">Aprende cómo manejar flujos de datos en tiempo real y procesar información en vivo para aplicaciones críticas.</p>
+                <button class="try-button" onclick="openModal('https://mybinder.org/v2/gh/appdeveloper777/jupiterlabtest/HEAD?filepath=data_streaming_real_time_processing.ipynb')">Try Yourself</button>
+            </div>
+        </div>
+
         <div class="modal" id="myModal">
             <div class="modal-content">
-                <span class="close-button" onclick="closeModal()">Cerrar</span>
-                <h2>Por favor, da clic en el enlace para abrir el laboratorio en un entorno de Jupyter Notebook</h2>
-                <a id="modalLink" href="" target="_blank" class="confirm-button">Abrir Lab</a>
+                <h2>¿Cómo usar Jupyter Notebook?</h2>                
+                <p>Jupyter Notebook es una herramienta interactiva que permite ejecutar código en tiempo real y visualizar resultados de inmediato.</p>
+                <p><strong>Edita el código y haz clic en 'Run this cell..':</strong> <img src="BOTON2.png" alt="Run Code" id="modalImage" onclick="toggleZoom()"></p>                
+                <button class="close-button" onclick="closeModal()">Cerrar</button>
+                <button class="confirm-button" id="confirmButton">Continuar</button>
             </div>
         </div>
     </div>
 
     <script>
         function openModal(url) {
-            document.getElementById("modalLink").href = url;
+            document.getElementById("confirmButton").onclick = function() {
+                window.open(url, "_blank");
+                closeModal();
+            };
             document.getElementById("myModal").style.display = "flex";
         }
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
+        }
+
+        function toggleZoom() {
+            const img = document.getElementById("modalImage");
+            img.classList.toggle("zoomed");
         }
     </script>
 </body>
